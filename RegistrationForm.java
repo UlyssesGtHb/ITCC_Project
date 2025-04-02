@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegistrationForm extends JFrame {
-    // GUI Designer Components
     private JPanel mainPanel;
     private JTextField nameField;
     private JTextField idField;
@@ -21,15 +20,11 @@ public class RegistrationForm extends JFrame {
     public RegistrationForm(String username) {
         this.username = username;
         initializeCourses();
-
-        // Basic frame setup
         setTitle("Course Registration");
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(600, 500);
         setLocationRelativeTo(null);
-
-        // Initialize components
         initializeComponents();
     }
 
@@ -40,23 +35,15 @@ public class RegistrationForm extends JFrame {
         courses.put("ITCZ222 - Data Gathering I", new Course("ITCZ222", "Data Gathering I", 25, 5));
         courses.put("ITCC122 - Information Management I", new Course("ITCC122", "Information Managament I", 20, 18));
 
-        // Initialize combo box
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(courses.keySet().toArray(new String[0]));
         courseComboBox.setModel(model);
     }
 
     private void initializeComponents() {
-        // Set up course selection listener
         courseComboBox.addActionListener(e -> updateSlotsDisplay());
-
-        // Set up buttons
         registerButton.addActionListener(this::registerStudent);
         button1.addActionListener(e -> dispose());
-
-        // Initial slots display
         updateSlotsDisplay();
-
-        // Configure confirmation area
         confirmationArea.setEditable(false);
         confirmationArea.setBorder(BorderFactory.createTitledBorder("Registration Confirmation"));
     }
@@ -74,8 +61,6 @@ public class RegistrationForm extends JFrame {
         String name = nameField.getText().trim();
         String id = idField.getText().trim();
         String selectedCourse = (String) courseComboBox.getSelectedItem();
-
-        // Validate input
         if (name.isEmpty() || id.isEmpty()) {
             showError("Please fill in all student information fields");
             return;
@@ -86,16 +71,11 @@ public class RegistrationForm extends JFrame {
             showError("No available slots for this course");
             return;
         }
-
-        // Process registration
         processRegistration(name, id, selectedCourse, course);
     }
 
     private void processRegistration(String name, String id, String courseName, Course course) {
-        // Update available slots
         course.setAvailableSlots(course.getAvailableSlots() - 1);
-
-        // Generate confirmation
         String confirmation = String.format(
                 "REGISTRATION CONFIRMATION%n%n" +
                         "Student Name: %s%n" +
@@ -122,8 +102,6 @@ public class RegistrationForm extends JFrame {
                 "Registration Error",
                 JOptionPane.ERROR_MESSAGE);
     }
-
-    // Inner class to represent Course
     private static class Course {
         private final String code;
         private final String title;

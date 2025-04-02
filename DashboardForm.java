@@ -46,8 +46,6 @@ public class DashboardForm extends JFrame {
         if (helpButton != null) {
             helpButton.addActionListener(e -> showHelp());
         }
-
-        // Main function buttons
         if (viewCoursesBtn != null) {
             viewCoursesBtn.addActionListener(this::showAvailableCourses);
         }
@@ -119,7 +117,6 @@ public class DashboardForm extends JFrame {
     }
 
     public static void main(String[] args) {
-        // Test the form independently
         SwingUtilities.invokeLater(() -> {
             DashboardForm form = new DashboardForm("testuser");
             form.setVisible(true);

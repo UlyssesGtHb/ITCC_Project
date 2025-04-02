@@ -10,10 +10,10 @@ public class LoginForm extends JFrame {
     private JButton clearButton;
     private JLabel titleLabel;
     private JTextArea introductionArea;
-    private JComboBox<String> departmentComboBox;  // Specify String type for the combo box
+    private JComboBox<String> departmentComboBox;  
     public LoginForm() {
         try {
-            // Verify main panel initialization
+   
             if (mainPanel == null) {
                 throw new IllegalStateException("Main panel is null. Check form initialization.");
             }
@@ -24,7 +24,7 @@ public class LoginForm extends JFrame {
             setSize(400, 400);
             setLocationRelativeTo(null);
 
-            // Initialize components
+            
             initializeComponents();
 
         } catch (Exception e) {
@@ -32,12 +32,12 @@ public class LoginForm extends JFrame {
             JOptionPane.showMessageDialog(null,
                     "Form initialization failed: " + e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
-            System.exit(1); // Exit if initialization fails
+            System.exit(1); 
         }
     }
 
     private void initializeComponents() {
-        // Verify and initialize department combo box
+        
         if (departmentComboBox == null) {
             System.err.println("Error: departmentComboBox is null!");
             departmentComboBox = new JComboBox<>();
@@ -45,7 +45,7 @@ public class LoginForm extends JFrame {
         }
         initializeDepartmentComboBox();
 
-        // Verify buttons
+        
         if (submitButton == null || clearButton == null) {
             System.err.println("Error: Buttons not initialized!");
         } else {
@@ -72,19 +72,19 @@ public class LoginForm extends JFrame {
             departmentComboBox.setSelectedIndex(0);
         } catch (Exception e) {
             System.err.println("Error initializing combo box: " + e.getMessage());
-            throw e; // Re-throw to be caught by constructor
+            throw e; 
         }
     }
 
     private void handleLogin(ActionEvent e) {
         try {
-            // Get and validate input
+            
             String firstname = firstNameField.getText().trim();
             String lastname = lastNameField.getText().trim();
             String email = emailField.getText().trim();
             String department = departmentComboBox.getSelectedItem().toString().trim();
 
-            // Validation
+            
             if (firstname.isEmpty() || lastname.isEmpty() || email.isEmpty()) {
                 showError("Please fill in all fields", "Incomplete Form");
                 return;
@@ -100,7 +100,7 @@ public class LoginForm extends JFrame {
                 return;
             }
 
-            // Verify DashboardForm exists
+            
             try {
                 Class.forName("DashboardForm");
             } catch (ClassNotFoundException ex) {
@@ -108,7 +108,7 @@ public class LoginForm extends JFrame {
                 return;
             }
 
-            // Proceed to dashboard
+            
             dispose();
             new DashboardForm("firstname").setVisible(true);
 
@@ -134,15 +134,15 @@ public class LoginForm extends JFrame {
             clearFields();
         }
         else if (response == JOptionPane.NO_OPTION) {
-            dispose(); // Close the window
+            dispose(); 
         }
-        // (Cancel option does nothing)
+    
     }
     private void clearFields() {
         firstNameField.setText("");
         lastNameField.setText("");
         emailField.setText("");
-        firstNameField.requestFocus(); // Return focus to first field
+        firstNameField.requestFocus(); 
     }
 
     public static void main(String[] args) {

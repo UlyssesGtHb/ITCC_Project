@@ -25,7 +25,6 @@ public class DashboardForm extends JFrame {
     }
 
     private void initializeComponents() {
-        // Verify components were properly bound
         if (mainPanel == null) {
             JOptionPane.showMessageDialog(null,
                     "Main panel not initialized! Check GUI designer bindings.",
@@ -33,15 +32,11 @@ public class DashboardForm extends JFrame {
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-
-        // Setup welcome message
         if (welcomeLabel != null) {
             welcomeLabel.setText("Welcome, " + username + "!");
             welcomeLabel.setFont(new Font("Arial", Font.BOLD, 24));
             welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         }
-
-        // Setup navigation buttons with null checks
         if (fileButton != null) {
             fileButton.addActionListener(this::showFileOptions);
         }
